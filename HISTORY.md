@@ -4,4 +4,4 @@
 
 ## 0.0.1
 
-`new` It is the first version of seedit-form.
+`new` 新增可定制化收件表单组件.

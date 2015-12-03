@@ -1,0 +1,114 @@
+body {
+	overflow: hidden;
+}
+html.contraction-active,
+body.contraction-active {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	-webkit-overflow-scrolling: auto;
+}
+.personal-info-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-bottom: 20px;
+	width: 100%;
+	z-index: 50;
+	background-color: #efefef;
+	-webkit-transition: all 0.3s;
+	-webkit-transform: translate3d(100%, 0, 0);
+	font-size: 16px;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+.personal-info-container.active {
+	-webkit-transform: inherit;
+}
+.personal-info-title {
+	width: 84%;
+	margin: 0 auto;
+	padding: 20px 0 10px;
+	font-size: 1em;
+	line-height: 20px;
+	font-family: "Microsoft YaHei";
+	color: #42474a;
+}
+.personal-info-list {
+	width: 87%;
+	margin: 0 auto;
+	padding: 0;
+}
+.personal-info-list li {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+	margin-top: 12px;
+	font-size: 1em;
+	list-style: none;
+}
+.personal-info-list li span {
+	float: left;
+	width: 90px;
+	height: 100%;
+	color: #b3b3b3;
+}
+.personal-info-list li span i {
+	padding-left: 7px;
+}
+.personal-info-list li blockquote {
+	display: block;
+	padding: 0;
+	margin: 0;
+	padding-left: 90px;
+	height: 100%;
+}
+.personal-info-list li blockquote input {
+	display: block;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-text-indent: 10px;
+	text-indent: 10px;
+}
+.personal-info-list li blockquote select {
+	float: left;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 48%;
+	height: 100%;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-text-indent: 10px;
+	text-indent: 10px;
+}
+.personal-info-list li blockquote select:first-child {
+	margin-right: 4%;
+}
+.personal-info-btn {
+	display: block;
+	width: 87%;
+	margin: 20px auto 0;
+	padding: 0;
+	border: 0;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	font-size: 1em;
+	color: #fff;
+	text-align: center;
+	line-height: 44px;
+	background-color: #ff4078;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.personal-info-btn-return {
+	background-color: #909090;
+}
