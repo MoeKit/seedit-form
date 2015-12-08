@@ -1,6 +1,6 @@
 {
   "name": "seedit-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "keywords": [],
   "homepage": "",
@@ -18,7 +18,9 @@
     "dependencies": {
       "validator": "~0.0.4",
       "seedit-config": "~0.1.2",
-      "jquery": "~1.8.3"
+      "jquery": "~1.8.3",
+      "seedit-district": "~0.0.1",
+      "import-style": "~1.0.0"
     },
     "devDependencies": {
       "expect.js": "0.3.1"

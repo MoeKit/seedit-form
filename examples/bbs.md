@@ -1,4 +1,4 @@
-# 微信用户提交资料
+# 论坛用户提交资料
 
 ---
 
@@ -18,57 +18,11 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
-	unionid: 123123,
 	list: [
 		{
 			name: "realname",
 			required: true,
 			'data-alt': "姓名不能为空，外部传入"
-		},
-		{
-			name: "mobile",
-			required: true
-		},
-		{
-			name: "provcity",
-			required: true
-		},
-		{
-			name: "city",
-			required: true
-		},
-		{
-			name: "2222222",
-			required: true
-		},
-		{
-			name: "addr",
-			required: true
-		},
-		{
-			name: "zipcode",
-			required: true
-		},
-		{
-			name: "qq",
-			required: true
-		},
-		{
-			name: "weixinhao",
-			required: true,
-			max: 8
-		},
-		{
-			name: "backupfield1",
-			required: true
-		},
-		{
-			name: "backupfield2",
-			required: true
-		},
-		{
-			name: "backupfield3",
-			required: true
 		}
 	],
 	onVerifyError: function(a,b,c){
@@ -96,57 +50,11 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
-	unionid: 123123,
 	list: [
 		{
 			name: "realname",
 			required: true,
 			'data-alt': "姓名不能为空，外部传入"
-		},
-		{
-			name: "mobile",
-			required: true
-		},
-		{
-			name: "provcity",
-			required: true
-		},
-		{
-			name: "city",
-			required: true
-		},
-		{
-			name: "2222222",
-			required: true
-		},
-		{
-			name: "addr",
-			required: true
-		},
-		{
-			name: "zipcode",
-			required: true
-		},
-		{
-			name: "qq",
-			required: true
-		},
-		{
-			name: "weixinhao",
-			required: true,
-			max: 8
-		},
-		{
-			name: "backupfield1",
-			required: true
-		},
-		{
-			name: "backupfield2",
-			required: true
-		},
-		{
-			name: "backupfield3",
-			required: true
 		}
 	],
 	onVerifyError: function(a,b,c){

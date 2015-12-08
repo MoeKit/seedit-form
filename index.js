@@ -4,7 +4,6 @@ require('./src/css/style.css');
 var box = require('./src/tpl/index.tpl');
 var item = require('./src/tpl/item.tpl');
 var Validator = require('validator');
-var $ = require('jquery');
 var Config = require('seedit-config');
 var District = require('seedit-district');
 
@@ -26,8 +25,19 @@ seeditForm.prototype.format = function(options){
 			this.params.validator[i] = options.validator[i];
 		}
 	}
+	// 初始化省市区组件的参数配置
+	this.params.district = {};
+	this.params.district.input = '#JS_form_provcity_' + this.timestamp;
+	this.params.district.cols = 2;
+	if( Object.prototype.toString.call(options.district) === '[object Object]' ){
+		for(var i in options.district){
+			this.params.district[i] = options.district[i];
+		}
+	}
 	// 防止多次提交接口
 	this.abled = true;
+	// 是否读取数据
+	this.params.read =    options.read === true ? true : false;
 	// 实际需要的验证列表
 	this.params.list =    options.list || [];
 	// 顶部提示语
@@ -124,6 +134,7 @@ seeditForm.prototype.init = function(options){
 	this.valid();
 	this.event();
 	this.initDistrict();
+	this.readApi();
 }
 seeditForm.prototype._getAttr = function(type, data){
 	// 获取参数值，没有就发返回空
@@ -197,10 +208,7 @@ seeditForm.prototype.event = function(){
 // 初始化省市选择器
 seeditForm.prototype.initDistrict = function(){
 	if( !!this.provcity ){
-		this.district = new District({
-			input: '#JS_form_provcity_' + this.timestamp,
-			cols: 2
-		});
+		console.log( new District(this.params.district) );
 	}
 }
 // 提交信息事件
@@ -211,7 +219,6 @@ seeditForm.prototype.submit = function(){
 	for(var i=0; i<this.params.list.length; i++){
 		if( this.params.list[i].name === 'provcity' ){
 			var provc = document.querySelector('#' + this.params.id + ' input[name="' + this.params.list[i].name + '"]').getAttribute('data-string') || '';
-			console.log( provc );
 			provc = !!provc ? provc.split(/&&|\$\$/g) : [];
 			json.prov = provc[0] || '';
 			json.city = provc[1] || '';
@@ -221,10 +228,9 @@ seeditForm.prototype.submit = function(){
 	json = this.params.formatValue(json);
 	if( !!this.params.unionid ) json.unionid = this.params.unionid;
 	if( !!this.params.uid ) json.uid = this.params.uid;
-	console.log(Object.prototype.toString.call(json) );
 	// 保证提交的信息是json格式
 	if( Object.prototype.toString.call(json) !== '[object Object]' ){
-		console.error('提交表单的数据格式必须是json格式：', json);
+		console && console.error('提交表单的数据格式必须是json格式：', json);
 		return false;
 	}
 	// 防止多次点击提交接口
@@ -255,10 +261,42 @@ seeditForm.prototype.submit = function(){
 }
 seeditForm.prototype.close = function(){
 	$('html, body').removeClass('contraction-active');
-	$(this.validator.dom).removeClass('active');
+	$(this.validator.dom).removeClass('active');	
 }
 seeditForm.prototype.open = function(){
 	$('html, body').addClass('contraction-active');
 	$(this.validator.dom).addClass('active');
+}
+seeditForm.prototype.readApi = function(){
+	var _this = this;
+	if( this.params.read ){
+		var json = {};
+		if( this.params.unionid ) json.unionid = this.params.unionid;
+		$.ajax({
+			type: 'GET',
+			url: Config.getSiteUrl('huodong') + '/restful/users/operate.json',
+			data: json,
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function(data){
+				console.log( _this.params );
+				if( data.error_code == 0 ){
+					for(var i in _this.params.data){
+						console.log( document.querySelector('#JS_form_' + i + '_' + _this.timestamp) );
+						if( i == 'provcity' ){
+							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
+						} else if( document.querySelector('#JS_form_' + i + '_' + _this.timestamp ) ){
+							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data[i];
+						}
+					}
+				} else {
+
+				}
+			},
+			error: function(){
+			}
+		});
+	}
 }
 module.exports = seeditForm;

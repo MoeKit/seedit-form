@@ -1,6 +1,3 @@
-body {
-	overflow: hidden;
-}
 html.contraction-active,
 body.contraction-active {
 	position: relative;
@@ -9,7 +6,7 @@ body.contraction-active {
 	-webkit-overflow-scrolling: auto;
 }
 .personal-info-container {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -30,9 +27,9 @@ body.contraction-active {
 .personal-info-title {
 	width: 84%;
 	margin: 0 auto;
-	padding: 20px 0 10px;
+	padding: 1.25em 0 0.625em;
 	font-size: 1em;
-	line-height: 20px;
+	line-height: 1.25em;
 	font-family: "Microsoft YaHei";
 	color: #42474a;
 }
@@ -45,26 +42,26 @@ body.contraction-active {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 44px;
-	line-height: 44px;
-	margin-top: 12px;
+	height: 2.75em;
+	line-height: 2.75em;
+	margin-top: 0.75em;
 	font-size: 1em;
 	list-style: none;
 }
 .personal-info-list li span {
 	float: left;
-	width: 90px;
+	width: 5.625em;
 	height: 100%;
 	color: #b3b3b3;
 }
 .personal-info-list li span i {
-	padding-left: 7px;
+	padding-left: 0.4375rem;
 }
 .personal-info-list li blockquote {
 	display: block;
 	padding: 0;
 	margin: 0;
-	padding-left: 90px;
+	padding-left: 5.625em;
 	height: 100%;
 }
 .personal-info-list li blockquote input {
@@ -97,7 +94,7 @@ body.contraction-active {
 .personal-info-btn {
 	display: block;
 	width: 87%;
-	margin: 20px auto 0;
+	margin: 1.25em auto 0;
 	padding: 0;
 	border: 0;
 	-webkit-border-radius: 6px;
@@ -105,7 +102,7 @@ body.contraction-active {
 	font-size: 1em;
 	color: #fff;
 	text-align: center;
-	line-height: 44px;
+	line-height: 2.75em;
 	background-color: #ff4078;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
