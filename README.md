@@ -43,6 +43,8 @@ var form = new seeditForm({
 支持微信用户和社区用户，微信用户需要自己带入unionid，社区用户会自动读取用户信息
 
 + unionid: `string` 微信unionid
++ type: `string` 活动类型，通过活动统一接口获取
++ activityid: `string` 活动id
 + uid: `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
 + title: `string` 顶部引导文案
 + submit: `string` 提交按钮文案

@@ -10,3 +10,7 @@
 
 `new` 新增自动获取用户信息功能
 `fixed` 增加捕获异常功能
+
+## 0.0.3
+
+`fixed` 替换api接口，新增type、activityid字段
