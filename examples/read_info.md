@@ -13,7 +13,7 @@
 
 ````javascript
 var seeditForm = require('seedit-form');
-var form = '';
+form = '';
 
 document.querySelector('#btn').addEventListener('click', function(){
 	form = new seeditForm({
@@ -25,6 +25,8 @@ document.querySelector('#btn').addEventListener('click', function(){
 			pass: true
 		},
 		unionid: document.querySelector("#input").value,
+		type: 'miyuezhuanwechat',
+		activityid: '567b68358cf43288478b4568',
 		read: true,
 		list: [
 			{

@@ -18,7 +18,9 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
-	unionid: 123123,
+	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
+	type: 'miyuezhuanwechat',
+	activityid: '567b68358cf43288478b4568',
 	list: [
 		{
 			name: "realname",
@@ -96,7 +98,9 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
-	unionid: 123123,
+	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
+	type: 'miyuezhuanwechat',
+	activityid: '567b68358cf43288478b4568',
 	list: [
 		{
 			name: "realname",

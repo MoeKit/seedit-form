@@ -16,7 +16,7 @@ seeditForm.prototype.format = function(options){
 	options = options || {};
 	this.timestamp = new Date().getTime();
 	this.params = {};
-	this.params.id = 'JS_from_' + new Date().getTime();
+	this.params.id = 'JS_from_' + this.timestamp;
 	// 初始化表单验证组件的参数配置
 	this.params.validator = {};
 	this.params.validator.id = this.params.id;
@@ -37,20 +37,27 @@ seeditForm.prototype.format = function(options){
 	// 防止多次提交接口
 	this.abled = true;
 	// 是否读取数据
-	this.params.read =    options.read === true ? true : false;
+	this.params.read =       options.read === true ? true : false;
 	// 实际需要的验证列表
-	this.params.list =    options.list || [];
+	this.params.list =       options.list || [];
 	// 顶部提示语
-	this.params.title =   options.title || '请正确填写你的个人资料,活动结束后会有客服与你联系~';
+	this.params.title =      options.title || '请正确填写你的个人资料,活动结束后会有客服与你联系~';
 	// 提交按钮文案
-	this.params.submit =  options.submit || '提交';
+	this.params.submit =     options.submit || '提交';
 	// 关闭按钮文案
-	this.params.close =   options.close || '返回';
+	this.params.close =      options.close || '返回';
 	// 论坛用户uid
-	this.params.uid =     options.uid || '';
+	this.params.uid =        options.uid || '';
 	// 微信用户unionid
-	this.params.unionid = options.unionid || '';
-	this.params.multiple = options.unionid || '信息提交中，请稍等';
+	this.params.unionid =    options.unionid || '';
+	this.params.multiple =   options.multiple || '信息提交中，请稍等';
+	// 新版接口多了类型和活动id（例如：type=miyuezhuanwechat; activityid=567b68358cf43288478b4568）
+	this.params.type =       options.type || '';
+	this.params.activityid = options.activityid || '';
+	// 程序异常回调
+	this.onEventError = options.onEventError || function(){
+		
+	};
 	// 表单验证失败回调事件
 	this.onVerifyError = options.onVerifyError || function(type, input, alt){
 		alert(alt);
@@ -130,7 +137,9 @@ seeditForm.prototype.format = function(options){
 seeditForm.prototype.init = function(options){
 	this.format(options);
 	this.initHtml();
-	document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
+	$("body").append(box);
+	// 严重异常，以下写法会破坏所有之前的绑定事件
+	// document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
 	this.valid();
 	this.event();
 	this.initDistrict();
@@ -145,41 +154,46 @@ seeditForm.prototype._getAttr = function(type, data){
 }
 // 根据需要验证的列表，初始化对应的html
 seeditForm.prototype.initHtml = function(){
-	var list = this.params.list;
-	var html = '';
-	for(var i=0; i<list.length; i++){
-		// 存在字段的name值，才加入初始化的html
-		if( !!list[i].name && !!this.params.data[list[i].name] ){
-			if( list[i].name === 'provcity' ){
-				this.provcity = true;
+	var _this = this;
+	try {
+		var list = this.params.list;
+		var html = '';
+		for(var i=0; i<list.length; i++){
+			// 存在字段的name值，才加入初始化的html
+			if( !!list[i].name && !!this.params.data[list[i].name] ){
+				if( list[i].name === 'provcity' ){
+					this.provcity = true;
+				}
+				list[i]['showname'] =   !!list[i].showname ? list[i].showname : this.params.data[list[i].name].showname;
+				list[i]['required'] =   !!list[i].required ? 'required' : '';
+				list[i]['data-valid'] = this._getAttr('data-valid', list[i]);
+				list[i]['data-alt'] =   this._getAttr('data-alt', list[i]);
+				list[i]['pattern'] =    this._getAttr('pattern', list[i]);
+				list[i]['min'] =        this._getAttr('min', list[i]);
+				list[i]['max'] =        this._getAttr('max', list[i]);
+				html += item.replace('{{timestamp}}',  this.timestamp || '' )
+							.replace(/{{name}}/gi,     list[i]['name'] || '' )
+							.replace('{{showname}}',   list[i]['showname'] || '' )
+							.replace('{{value}}',      list[i]['value'] || '' )
+							.replace('{{required}}',   list[i]['required'] || '' )
+							.replace('{{data-valid}}', list[i]['data-valid'] || '' )
+							.replace('{{pattern}}',    list[i]['pattern'] || '' )
+							.replace('{{min}}',        list[i]['min'] || '' )
+							.replace('{{max}}',        list[i]['max'] || '' )
+							.replace('{{data-alt}}',   list[i]['data-alt'] || '' );
+			} else {
+				list.splice(i,1);
+				i--;
 			}
-			list[i]['showname'] =   !!list[i].showname ? list[i].showname : this.params.data[list[i].name].showname;
-			list[i]['required'] =   !!list[i].required ? 'required' : '';
-			list[i]['data-valid'] = this._getAttr('data-valid', list[i]);
-			list[i]['data-alt'] =   this._getAttr('data-alt', list[i]);
-			list[i]['pattern'] =    this._getAttr('pattern', list[i]);
-			list[i]['min'] =        this._getAttr('min', list[i]);
-			list[i]['max'] =        this._getAttr('max', list[i]);
-			html += item.replace('{{timestamp}}',  this.timestamp || '' )
-						.replace(/{{name}}/gi,     list[i]['name'] || '' )
-						.replace('{{showname}}',   list[i]['showname'] || '' )
-						.replace('{{value}}',      list[i]['value'] || '' )
-						.replace('{{required}}',   list[i]['required'] || '' )
-						.replace('{{data-valid}}', list[i]['data-valid'] || '' )
-						.replace('{{pattern}}',    list[i]['pattern'] || '' )
-						.replace('{{min}}',        list[i]['min'] || '' )
-						.replace('{{max}}',        list[i]['max'] || '' )
-						.replace('{{data-alt}}',   list[i]['data-alt'] || '' );
-		} else {
-			list.splice(i,1);
-			i--;
 		}
+		box = box.replace('{{body}}',   html)
+				 .replace('{{id}}',     this.params.id || '' )
+				 .replace('{{title}}',  this.params.title || '' )
+				 .replace('{{submit}}', this.params.submit || '' )
+				 .replace('{{close}}',  this.params.close || '' );
+	} catch(err){
+		_this.onEventError(err);
 	}
-	box = box.replace('{{body}}',   html)
-			 .replace('{{id}}',     this.params.id || '' )
-			 .replace('{{title}}',  this.params.title || '' )
-			 .replace('{{submit}}', this.params.submit || '' )
-			 .replace('{{close}}',  this.params.close || '' );
 	return this;
 }
 // 初始化表单验证引擎
@@ -194,21 +208,28 @@ seeditForm.prototype.valid = function(){
 // 表单按钮事件监听
 seeditForm.prototype.event = function(){
 	var _this = this;
-	// 提交信息按钮
-	document.querySelector('#' + this.params.id + ' .personal-info-btn').addEventListener('click', function(){
-		_this.validator.verify(function(){
-			_this.submit();
+	try{
+		// 提交信息按钮
+		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn'), function(){
+			if( !_this.params.type || !_this.params.activityid ){
+				return alert('type、activityid不能为空');
+			}
+			_this.validator.verify(function(){
+				_this.submit();
+			});
 		});
-	}, false);
-	// 关闭返回按钮
-	document.querySelector('#' + this.params.id + ' .personal-info-btn-return').addEventListener('click', function(){
-		_this.close();
-	}, false);
+		// 关闭返回按钮
+		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn-return'), function(){
+			_this.close();
+		});
+	} catch(err){
+		_this.onEventError(err);
+	}
 }
 // 初始化省市选择器
 seeditForm.prototype.initDistrict = function(){
 	if( !!this.provcity ){
-		console.log( new District(this.params.district) );
+		this.district = new District(this.params.district);
 	}
 }
 // 提交信息事件
@@ -226,8 +247,10 @@ seeditForm.prototype.submit = function(){
 	}
 	// 格式化数据
 	json = this.params.formatValue(json);
-	if( !!this.params.unionid ) json.unionid = this.params.unionid;
-	if( !!this.params.uid ) json.uid = this.params.uid;
+	if( !!this.params.unionid )    json.unionid = this.params.unionid;
+	if( !!this.params.type )       json.type = this.params.type;
+	if( !!this.params.activityid ) json.activityid = this.params.activityid;
+	if( !!this.params.uid )        json.uid = this.params.uid;
 	// 保证提交的信息是json格式
 	if( Object.prototype.toString.call(json) !== '[object Object]' ){
 		console && console.error('提交表单的数据格式必须是json格式：', json);
@@ -241,7 +264,7 @@ seeditForm.prototype.submit = function(){
 	_this.abeld = false;
 	$.ajax({
 		type: 'POST',
-		url: Config.getSiteUrl('huodong') + '/restful/users/operate.json',
+		url: Config.getSiteUrl('huodong') + '/restful/users/info.json',
 		data: json,
 		xhrFields: {
 			withCredentials: true
@@ -271,30 +294,69 @@ seeditForm.prototype.readApi = function(){
 	var _this = this;
 	if( this.params.read ){
 		var json = {};
-		if( this.params.unionid ) json.unionid = this.params.unionid;
+		if( this.params.unionid )    json.unionid = this.params.unionid;
+		if( this.params.type )       json.type = this.params.type;
+		if( this.params.activityid ) json.activityid = this.params.activityid;
 		$.ajax({
 			type: 'GET',
-			url: Config.getSiteUrl('huodong') + '/restful/users/operate.json',
+			url: Config.getSiteUrl('huodong') + '/restful/users/info.json',
 			data: json,
 			xhrFields: {
 				withCredentials: true
 			},
 			success: function(data){
-				console.log( _this.params );
-				if( data.error_code == 0 ){
-					for(var i in _this.params.data){
-						console.log( document.querySelector('#JS_form_' + i + '_' + _this.timestamp) );
-						if( i == 'provcity' ){
-							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
-						} else if( document.querySelector('#JS_form_' + i + '_' + _this.timestamp ) ){
-							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data[i];
+				try{
+					if( data.error_code == 0 && !!data.data && !!data.data._id ){
+						for(var i in _this.params.data){
+							var formEle = document.querySelector('#JS_form_' + i + '_' + _this.timestamp);
+							if( formEle ){
+								if( i == 'provcity' ){
+									formEle.value = data.data['prov'] + data.data['city']
+								} else {
+									formEle.value = data.data[i] == 0 ? '' : data.data[i];
+								}
+							}
+								// console.log(_this );
+								// for( var j=0; j<_this.district.province.length; j++ ){
+								// 	if( _this.district.province[j] == data.data['prov'] ){
+								// 		// 通过省份名字选中省份
+								// 		_this.district.picker.cols[0].selectByIndex(j);
+								// 		// 获取省份id
+								// 		console.log( form.district.picker );
+								// 		var provinceId = form.district.picker.cols[0].getValue();
+								// 		// 更新城市picker数据
+								// 		_this.district.getCity(provinceId, _this.district.picker);
+								// 		setTimeout(function(){
+								// 			console.log(  );
+								// 			for( var k=0; k<_this.district.city.length; k++ ){
+								// 				console.log( _this.district.city[k] , data.data['city'] );
+								// 				if( _this.district.city[k] == data.data['city'] ){
+								// 					// 通过城市名字选中城市
+								// 					console.log(k);
+								// 					_this.district.picker.cols[1].selectByIndex(k);
+								// 					document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
+								// 					break;
+								// 				}
+								// 			}
+								// 		}, 3000);
+								// 		//document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
+								// 		break;
+								// 	}
+								// }
+								// _this.district.picker.setValue([5]);
+								// _this.district.getCity(5, _this.district.picker);
+								// _this.district.picker.setValue([5]);
+								// form.district.picker.cols[0].scroller.querySelector('[data-value="5"]').innerHTML
 						}
-					}
-				} else {
+					} else {
 
+					}
+				} catch(err){
+					_this.onEventError(err);
 				}
 			},
 			error: function(){
+
 			}
 		});
 	}
