@@ -6,6 +6,7 @@ var item = require('./src/tpl/item.tpl');
 var Validator = require('validator');
 var Config = require('seedit-config');
 var District = require('seedit-district');
+var $ = window.$ || window.jQuery;
 
 var seeditForm = function(options){
 	this.init(options);
@@ -34,6 +35,10 @@ seeditForm.prototype.format = function(options){
 			this.params.district[i] = options.district[i];
 		}
 	}
+	// 外部引入$时，使用外部的$, 否则使用全局的$
+	if( !!options.$ ){
+		$ = options.$;
+	}
 	// 防止多次提交接口
 	this.abled = true;
 	// 是否读取数据
@@ -55,15 +60,15 @@ seeditForm.prototype.format = function(options){
 	this.params.type =       options.type || '';
 	this.params.activityid = options.activityid || '';
 	// 程序异常回调
-	this.onEventError = options.onEventError || function(){
+	this.onEventError =      options.onEventError || function(){
 		
 	};
 	// 表单验证失败回调事件
-	this.onVerifyError = options.onVerifyError || function(type, input, alt){
+	this.onVerifyError =     options.onVerifyError || function(type, input, alt){
 		alert(alt);
 	};
 	// 表单验证成功回调事件
-	this.onVerifySuccess = options.onVerifySuccess || function(){
+	this.onVerifySuccess =   options.onVerifySuccess || function(){
 		_this.submit();
 	};
 	// 表单数据格式化事件

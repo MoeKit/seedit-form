@@ -45,6 +45,7 @@ var form = new seeditForm({
 + unionid: `string` 微信unionid
 + type: `string` 活动类型，通过活动统一接口获取
 + activityid: `string` 活动id
++ $: `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
 + uid: `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
 + title: `string` 顶部引导文案
 + submit: `string` 提交按钮文案

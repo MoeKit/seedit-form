@@ -18,6 +18,8 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
+	type: 'miyuezhuanwechat',
+	activityid: '567b68358cf43288478b4568',
 	list: [
 		{
 			name: "realname",
@@ -29,10 +31,10 @@ form = new seeditForm({
 		alert(c);
 	},
 	onError: function(data){
-
+		alert( JSON.stringify(data) );
 	},
 	onSuccess: function(data){
-
+		alert( JSON.stringify(data) );
 	}
 });
 document.querySelector('#btn').addEventListener('click', function(){
