@@ -42,25 +42,27 @@ var form = new seeditForm({
 ## 初始化参数
 支持微信用户和社区用户，微信用户需要自己带入unionid，社区用户会自动读取用户信息
 
-+ unionid: `string` 微信unionid
-+ type: `string` 活动类型，通过活动统一接口获取
-+ activityid: `string` 活动id
-+ $: `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
-+ uid: `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
-+ title: `string` 顶部引导文案
-+ submit: `string` 提交按钮文案
-+ close: `string` 关闭按钮文案
-+ validator: `object` 表单验证组件初始化配置
-+ list: `array` 需要验证的表单元素列表, 以下参数均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
-	+ required `boolean` 默认为空，设置为true才算启用必填校验
-	+ data-alt `string` 表单验证失败的文案
-	+ data-valid `string` 表单校验类型
++ unionid:         `string` 微信unionid
++ type:            `string` 活动类型，通过活动统一接口获取
++ activityid:      `string` 活动id
++ $:               `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
++ uid:             `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
++ title:           `string` 顶部引导文案
++ submit:          `string` 提交按钮文案
++ close:           `string` 关闭按钮文案
++ validator:       `object` 表单验证组件初始化配置
++ list:            `array` 需要验证的表单元素列表, 以下参数均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
+	+ required     `boolean` 默认为空，设置为true才算启用必填校验
+	+ data-alt     `string` 表单验证失败的文案
+	+ data-valid   `string` 表单校验类型
 	+ 更多请参考validator的表单标签属性
-+ onVerifyError: `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
++ onVerifyError:   `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
 + onVerifySuccess: `function` 表单验证通过回调,(默认自带提交资料到接口，一般不需要重写此方法)
-+ formatValue: `function` 提交资料的json数据格式化事件
-+ onError: `function` 提交资料成功回调
-+ onSuccess: `function` 提交资料失败回调
++ formatValue:     `function` 提交资料的json数据格式化事件
++ onError:         `function` 提交资料成功回调
++ onSuccess:       `function` 提交资料失败回调
++ onClose:         `function` 返回按钮的回调事件
++ onSubmit:        `function` 提交按钮的回调事件
 
 ## 初始化参数的`list`下的`name`值介绍
 + `realname`     姓名

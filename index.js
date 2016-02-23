@@ -7,7 +7,6 @@ var Validator = require('validator');
 var Config = require('seedit-config');
 var District = require('seedit-district');
 var $ = window.$ || window.jQuery;
-
 var seeditForm = function(options){
 	this.init(options);
 	return this;
@@ -59,6 +58,18 @@ seeditForm.prototype.format = function(options){
 	// 新版接口多了类型和活动id（例如：type=miyuezhuanwechat; activityid=567b68358cf43288478b4568）
 	this.params.type =       options.type || '';
 	this.params.activityid = options.activityid || '';
+	this.btn = {};
+	this.btn.close = options.onClose || function(){
+		_this.close();
+	};
+	this.btn.submit = options.onSubmit || function(){
+		if( !_this.params.type || !_this.params.activityid ){
+			return alert('type、activityid不能为空');
+		}
+		_this.validator.verify(function(){
+			_this.submit();
+		});
+	};
 	// 程序异常回调
 	this.onEventError =      options.onEventError || function(){
 		
@@ -142,7 +153,8 @@ seeditForm.prototype.format = function(options){
 seeditForm.prototype.init = function(options){
 	this.format(options);
 	this.initHtml();
-	$("body").append(box);
+	document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
+	// $("body").append(box);
 	// 严重异常，以下写法会破坏所有之前的绑定事件
 	// document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
 	this.valid();
@@ -215,7 +227,7 @@ seeditForm.prototype.event = function(){
 	var _this = this;
 	try{
 		// 提交信息按钮
-		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn'), function(){
+		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn'), _this.btn.submit || function(){
 			if( !_this.params.type || !_this.params.activityid ){
 				return alert('type、activityid不能为空');
 			}
@@ -224,7 +236,7 @@ seeditForm.prototype.event = function(){
 			});
 		});
 		// 关闭返回按钮
-		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn-return'), function(){
+		__tap__(document.querySelector('#' + this.params.id + ' .personal-info-btn-return'), _this.btn.close || function(){
 			_this.close();
 		});
 	} catch(err){

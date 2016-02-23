@@ -13,6 +13,7 @@
 
 ````javascript
 var seeditForm = require('seedit-form');
+var $ = require('jquery');
 form = '';
 
 document.querySelector('#btn').addEventListener('click', function(){

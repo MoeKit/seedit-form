@@ -11,6 +11,7 @@
 
 ```javascript
 var seeditForm = require('seedit-form');
+var $ = require('jquery');
 form = new seeditForm({
 	title: "请正确填写你的个人资料,活动结束后会有客服与你联系~",
 	submit: "提交",

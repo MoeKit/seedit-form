@@ -11,6 +11,7 @@
 
 ```javascript
 var seeditForm = require('seedit-form');
+
 form = new seeditForm({
 	title: "请正确填写你的个人资料,活动结束后会有客服与你联系~",
 	submit: "提交",
@@ -18,6 +19,7 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
+
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
@@ -98,6 +100,7 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
+	$: $,
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
