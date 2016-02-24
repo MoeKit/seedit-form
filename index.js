@@ -153,8 +153,7 @@ seeditForm.prototype.format = function(options){
 seeditForm.prototype.init = function(options){
 	this.format(options);
 	this.initHtml();
-	document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
-	// $("body").append(box);
+	$("body").append(box);
 	// 严重异常，以下写法会破坏所有之前的绑定事件
 	// document.querySelector('body').innerHTML = document.querySelector('body').innerHTML + box;
 	this.valid();
