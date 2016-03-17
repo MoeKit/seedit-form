@@ -3,21 +3,34 @@
 ---
 
 ## 说明
-> 该模块只用来做移动端活动资料收集使用  
+> 该模块只用来做移动端活动资料及地址管理资料收集使用  
 > 模块依赖jquery，内部没有引用，使用时请自己引入jquery
 
 ## 使用方法
 ```
 var seeditForm = require('seedit-form');
-// 初始化一个带姓名、手机、省市、街道地址的表单
+
+//  初始化一个用于收集信息的表单
+//  addr参数_提交到地址管理的信息
+//  list参数_活动提交时除addr外所需信息 
+
 var form = new seeditForm({
-	title: "请正确填写你的个人资料,活动结束后会有客服与你联系~",
-	submit: "提交",
+	submit: "确认保存",
 	close: "返回",
 	validator: {
 		isFocus: false
 	},
 	list: [
+		{
+			name: "wechat",
+			required: true
+		},
+		{
+			name: "qq",
+			required: true
+		}
+	],
+	addr: [
 		{
 			name: "realname",
 			required: true,
@@ -30,7 +43,7 @@ var form = new seeditForm({
 		{
 			name: "provcity",
 			required: true
-		}
+		},
 		{
 			name: "addr",
 			required: true
@@ -47,15 +60,31 @@ var form = new seeditForm({
 + activityid:      `string` 活动id
 + $:               `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
 + uid:             `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
+ 
+
+
+
 + title:           `string` 顶部引导文案
 + submit:          `string` 提交按钮文案
 + close:           `string` 关闭按钮文案
 + validator:       `object` 表单验证组件初始化配置
-+ list:            `array` 需要验证的表单元素列表, 以下参数均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
+
+
+
++ list:            `array` 需要验证的活动信息表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
+	+ placeholer
 	+ required     `boolean` 默认为空，设置为true才算启用必填校验
 	+ data-alt     `string` 表单验证失败的文案
-	+ data-valid   `string` 表单校验类型
+	+ data-valid   `string` 表单校验类型，姓名相关请填realname
 	+ 更多请参考validator的表单标签属性
++ list:            `array` 需要验证的地址信息表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
+	+ required     `boolean` 默认为空，设置为true才算启用必填校验
+	+ data-alt     `string` 表单验证失败的文案
+	+ data-valid   `string` 表单校验类型，姓名相关请填realname
+	+ 更多请参考validator的表单标签属性
+
+
+
 + onVerifyError:   `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
 + onVerifySuccess: `function` 表单验证通过回调,(默认自带提交资料到接口，一般不需要重写此方法)
 + formatValue:     `function` 提交资料的json数据格式化事件

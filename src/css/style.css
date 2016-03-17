@@ -1,11 +1,29 @@
+*{
+	border: 0;
+	margin:0;
+	padding:0;
+	list-style: none;
+	text-decoration: none;
+}
+.clearfix:before,.clearfix:after{ 
+    content:""; 
+    display:table; 
+} 
+.clearfix:after{clear:both;} 
+.clearfix{ 
+    *zoom:1;/*IE/7/6*/
+}
 html.contraction-active,
 body.contraction-active {
 	position: relative;
 	height: 100%;
 	overflow: hidden;
-	-webkit-overflow-scrolling: auto;
+	-webkit-overflow-scrolling: auto; 
 }
-.personal-info-container {
+span{
+   -webkit-user-select: none;
+}
+.personal-info-container{
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -13,74 +31,85 @@ body.contraction-active {
 	bottom: 0;
 	padding-bottom: 20px;
 	width: 100%;
+	height: 100%;
 	z-index: 50;
-	background-color: #efefef;
+	background-color: #f6f6f6;
+	color: #666666;
 	-webkit-transition: all 0.3s;
 	-webkit-transform: translate3d(100%, 0, 0);
 	font-size: 16px;
-	overflow-y: scroll;
+	font-family: "Microsoft YaHei";
+	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
-.personal-info-container.active {
+.personal-info-container.active{
 	-webkit-transform: inherit;
 }
-.personal-info-title {
-	width: 84%;
+.personal-info-tips,
+.list-info-tips{
 	margin: 0 auto;
-	padding: 1.25em 0 0.625em;
-	font-size: 1em;
-	line-height: 1.25em;
-	font-family: "Microsoft YaHei";
-	color: #42474a;
+	padding: 1em 5% 0.2em;
+	font-size: 0.875em;
+	height: 1.5em;
+	color: #c8c8c8
 }
-.personal-info-list {
-	width: 87%;
+.personal-info-tips2 {
 	margin: 0 auto;
-	padding: 0;
+	padding: 0.2em 5%;
+	font-size: 0.875em;
+	height: 1.5em;
+	color: #c8c8c8
+}
+.personal-info-list{
+	background: #fff;
+	border-top:1px solid #D4D4D4;
 }
 .personal-info-list li {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 2.75em;
-	line-height: 2.75em;
-	margin-top: 0.75em;
+	padding: 0 5%;
+	height: 2.8125em;
+	line-height: 2.8125em;
+	border-bottom:1px solid #D4D4D4;
 	font-size: 1em;
-	list-style: none;
 }
 .personal-info-list li span {
 	float: left;
-	width: 5.625em;
+	width: 4.625em;
 	height: 100%;
-	color: #b3b3b3;
+	color: #333;
 }
 .personal-info-list li span i {
 	padding-left: 0.4375rem;
 }
 .personal-info-list li blockquote {
 	display: block;
-	padding: 0;
-	margin: 0;
-	padding-left: 5.625em;
+	margin:0;
+	padding:0;
+	padding-left: 4.625em;
 	height: 100%;
 }
 .personal-info-list li blockquote input {
 	display: block;
 	border: 0;
-	margin: 0;
-	padding: 0;
+	margin:0;
+	padding:0.90625em 0;
 	width: 100%;
-	height: 100%;
+	height: 1em;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	-webkit-text-indent: 10px;
-	text-indent: 10px;
+	text-align: right;
+	line-height: normal;
+	font-size: 1em;
+	outline:none;
+	-webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+.personal-info-list li blockquote input[name="provcity"]{
+	pointer-events:none
 }
 .personal-info-list li blockquote select {
 	float: left;
 	border: 0;
-	margin: 0;
-	padding: 0;
+	margin:0;
+	padding:0;
 	width: 48%;
 	height: 100%;
 	-webkit-border-radius: 6px;
@@ -91,21 +120,159 @@ body.contraction-active {
 .personal-info-list li blockquote select:first-child {
 	margin-right: 4%;
 }
-.personal-info-btn {
+
+.personal-info-btn,
+.list-info-btn,
+.personal-delet-btn{
 	display: block;
-	width: 87%;
-	margin: 1.25em auto 0;
-	padding: 0;
-	border: 0;
+	width: 90%;
+	margin: 0.625em auto 0;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
 	font-size: 1em;
 	color: #fff;
 	text-align: center;
 	line-height: 2.75em;
-	background-color: #ff4078;
+	background-color: #F8789A;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.personal-info-btn-return {
-	background-color: #909090;
+.list-info-btn{
+	margin-bottom: 0.625em
 }
+.personal-btn-return,
+.personal-btn-return2,
+.personal-btn-close,
+.personal-new-close,
+.list-btn-return,
+.list-btn-return2{
+	background: #fff;
+	border: 1px solid #d4d4d4;
+	color: #666
+}
+
+.personal-btn-delet{
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+	background-color: #f6f6f6;
+	color: #F8789A;
+	font-size: 0.875em;
+	line-height: 2.75em;
+}
+.personal-btn-delet{
+	margin: 0.625em auto ;
+}
+.user-info{
+	background: #fff;
+	margin-bottom: 0.625em;
+	padding: 0.2em 5%;
+	font-size: 1em;
+	line-height: 2em;
+	border-bottom:1px solid #D4D4D4;
+	font-size: 1em;
+	border-top:1px solid #D4D4D4;
+}
+.info-list{
+	border-top:1px solid #D4D4D4;
+}
+.list-container{
+	margin-bottom: 3em;
+}
+.list-container ul li,.user-info ul li{
+	padding: 0.875em 5%;
+	border-bottom:1px solid #D4D4D4;
+	font-size: 0.875em;
+	line-height: 1.5em;
+	cursor: pointer;
+}
+.list-container ul li.info-list-edit .info-text,.user-info li{
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKBAMAAACK4lk+AAAAFVBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmaAqJDbAAAABnRSTlMAYPAwoCDA8B/KAAAAIElEQVQI12MwMmBgYGBRZgACJzSmmAADA2MiMiMIyAAASukDBxedFkcAAAAASUVORK5CYII=") center right no-repeat;
+}
+.list-container ul li.info-list-choice.ischoice .info-text{
+	background: none;
+}
+.list-container ul li.info-list-choice .info-text{
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAMAAAC6CgRnAAAAaVBMVEUAAAD4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr4eJr/////9/j7rsL8v9D4fZ76pLv6nLX7ucr7tMf5k67+5uz92eL90Nz5h6X94eic85nKAAAAE3RSTlMA8Q/2iGKmW+3Z1ZUBWhali4oYP88K+gAAAN9JREFUKM+F0usWgiAMAGBQwUpLDRC8a+//kE0X4gVP+wOHT2SwERsBy+5U0HvGAlxwEoXCRhjtNL6JbdziVdJCHCNKfxadCBDpKXzxnOlFvUZfYInwRwLZh+flqjNwlYAwDynVwsAI95CUJYycPI5UAul58iCYZV1vqcFMyTJoNUxILVArMHDfR8rRzJNGSVXaG+J5Uy8V/Mg00hGcx/E8+L4y2tGSJ1tT6EegyiXM7LvMe4BqR2GwvqcZ9iSSTR06rbsN0fd1/eLruhe2X/IT5el1n/3tT6eML33N2SpfqXYqmI8JbHEAAAAASUVORK5CYII=") no-repeat center right;
+	background-size: 1.25em;
+}
+.list-container .info-text,.user-info .user-info-text{
+	display: block;
+	width: 90%;
+	padding-right:10%; 
+}
+
+.list-container .info-name,.user-info .user-info-name{
+	display: inline-block;
+	float: left;
+	width: 65%;
+	font-weight: bold;
+	overflow: hidden;
+}
+.user-info .user-info-name{
+	font-weight: normal;
+}
+.list-container .isdefault{
+	color: #ff0000;
+	overflow: hidden;
+}
+.list-container.edit .isdefault{
+	display: none;
+}
+.list-container .info-phone,.user-info .user-info-phone{
+	display: inline-block;
+	float: left;
+	width: 35%;
+	text-align: right;
+	overflow: hidden;
+}
+.hide{
+	display: none
+}
+.opacity-bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	filter:Alpha(Opacity=80);
+	background-color:rgba(0,0,0,0.8);
+	padding-top: 25%;
+}
+.personal-delet-confirm{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 90;
+}
+.confirm-text{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	width: 16em;
+	margin-left: -7.625em;
+	margin-top:-5em;
+
+}
+.personal-delet-title{
+	color: #fff;
+	font-size: 1em;
+	text-align: center;
+	margin-bottom: 1em;
+}
+.personal-delet-btn{
+	display: inline-block;
+	width:7em;
+	margin:0.3125em; 
+
+}
+.piker-dialog{
+	z-index: 99
+}
+

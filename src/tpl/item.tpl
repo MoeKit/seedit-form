@@ -1,6 +1,6 @@
 <li>
 	<span>{{showname}}:</span>
 	<blockquote>
-		<input type="text" value="{{value}}" name="{{name}}" id="JS_form_{{name}}_{{timestamp}}" {{required}} {{min}} {{max}} {{data-valid}} {{pattern}} {{data-alt}} />
+		<input type="textarea" value="{{value}}" name="{{name}}" id="JS_form_{{name}}_{{timestamp}}" data-string="{{data-string}}" {{placeholder}} {{required}} {{min}} {{max}} {{data-valid}} {{pattern}} {{data-alt}}  />
 	</blockquote>
 </li>

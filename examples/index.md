@@ -13,9 +13,6 @@
 var seeditForm = require('seedit-form');
 
 form = new seeditForm({
-	title: "请正确填写你的个人资料,活动结束后会有客服与你联系~",
-	submit: "提交",
-	close: "返回",
 	validator: {
 		isFocus: false
 	},
@@ -25,9 +22,20 @@ form = new seeditForm({
 	activityid: '567b68358cf43288478b4568',
 	list: [
 		{
+			name: "wechat",
+			required: true
+		},
+		{
+			name: "qq",
+			required: true
+		}
+	],
+	addr: [
+		{
 			name: "realname",
 			required: true,
-			'data-alt': "姓名不能为空，外部传入"
+			'data-alt': "姓名不能为空，外部传入"，
+			placeholder:'xxxx'
 		},
 		{
 			name: "mobile",
@@ -38,40 +46,7 @@ form = new seeditForm({
 			required: true
 		},
 		{
-			name: "city",
-			required: true
-		},
-		{
-			name: "2222222",
-			required: true
-		},
-		{
 			name: "addr",
-			required: true
-		},
-		{
-			name: "zipcode",
-			required: true
-		},
-		{
-			name: "qq",
-			required: true
-		},
-		{
-			name: "weixinhao",
-			required: true,
-			max: 8
-		},
-		{
-			name: "backupfield1",
-			required: true
-		},
-		{
-			name: "backupfield2",
-			required: true
-		},
-		{
-			name: "backupfield3",
 			required: true
 		}
 	],
@@ -94,9 +69,6 @@ console.log(form);
 ````javascript
 var seeditForm = require('seedit-form');
 form = new seeditForm({
-	title: "请正确填写你的个人资料,活动结束后会有客服与你联系~",
-	submit: "提交",
-	close: "返回",
 	validator: {
 		isFocus: false
 	},
@@ -105,6 +77,16 @@ form = new seeditForm({
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
 	list: [
+		{
+			name: "wechat",
+			required: true
+		},
+		{
+			name: "qq",
+			required: true
+		}
+	],
+	addr: [
 		{
 			name: "realname",
 			required: true,
@@ -119,40 +101,7 @@ form = new seeditForm({
 			required: true
 		},
 		{
-			name: "city",
-			required: true
-		},
-		{
-			name: "2222222",
-			required: true
-		},
-		{
 			name: "addr",
-			required: true
-		},
-		{
-			name: "zipcode",
-			required: true
-		},
-		{
-			name: "qq",
-			required: true
-		},
-		{
-			name: "weixinhao",
-			required: true,
-			max: 8
-		},
-		{
-			name: "backupfield1",
-			required: true
-		},
-		{
-			name: "backupfield2",
-			required: true
-		},
-		{
-			name: "backupfield3",
 			required: true
 		}
 	],

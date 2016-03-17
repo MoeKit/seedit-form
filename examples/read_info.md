@@ -30,57 +30,28 @@ document.querySelector('#btn').addEventListener('click', function(){
 		activityid: '567b68358cf43288478b4568',
 		read: true,
 		list: [
-			{
-				name: "realname",
-				required: true,
-				'data-alt': "姓名不能为空，外部传入"
-			},
-			{
-				name: "mobile",
-				required: true
-			},
-			{
-				name: "provcity",
-				required: true
-			},
-			{
-				name: "city",
-				required: true
-			},
-			{
-				name: "2222222",
-				required: true
-			},
-			{
-				name: "addr",
-				required: true
-			},
-			{
-				name: "zipcode",
-				required: true
-			},
-			{
-				name: "qq",
-				required: true
-			},
-			{
-				name: "weixinhao",
-				required: true,
-				max: 8
-			},
-			{
-				name: "backupfield1",
-				required: true
-			},
-			{
-				name: "backupfield2",
-				required: true
-			},
-			{
-				name: "backupfield3",
-				required: true
-			}
-		],
+		{
+			name: "realname",
+			required: true,
+			'data-alt': "姓名不能为空，外部传入"
+		},
+		{
+			name: "qq",
+			required: true
+		},
+		{
+			name: "mobile",
+			required: true
+		},
+		{
+			name: "provcity",
+			required: true
+		},
+		{
+			name: "addr",
+			required: true
+		}
+	],
 		onVerifyError: function(a,b,c){
 			alert(c);
 		},

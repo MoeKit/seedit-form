@@ -23,9 +23,31 @@ form = new seeditForm({
 	activityid: '567b68358cf43288478b4568',
 	list: [
 		{
+			name: "wechat",
+			required: true
+		},
+		{
+			name: "qq",
+			required: true
+		}
+	],
+	addr: [
+		{
 			name: "realname",
 			required: true,
 			'data-alt': "姓名不能为空，外部传入"
+		},
+		{
+			name: "mobile",
+			required: true
+		},
+		{
+			name: "provcity",
+			required: true
+		},
+		{
+			name: "addr",
+			required: true
 		}
 	],
 	onVerifyError: function(a,b,c){
@@ -53,11 +75,35 @@ form = new seeditForm({
 	validator: {
 		isFocus: false
 	},
+	type: 'miyuezhuanwechat',
+	activityid: '567b68358cf43288478b4568',
 	list: [
+		{
+			name: "wechat",
+			required: true
+		},
+		{
+			name: "qq",
+			required: true
+		}
+	],
+	addr: [
 		{
 			name: "realname",
 			required: true,
 			'data-alt': "姓名不能为空，外部传入"
+		},
+		{
+			name: "mobile",
+			required: true
+		},
+		{
+			name: "provcity",
+			required: true
+		},
+		{
+			name: "addr",
+			required: true
 		}
 	],
 	onVerifyError: function(a,b,c){
