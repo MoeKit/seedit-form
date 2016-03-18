@@ -51,7 +51,11 @@ var form = new seeditForm({
 + submit:          `string` 提交按钮文案
 + close:           `string` 关闭按钮文案
 + validator:       `object` 表单验证组件初始化配置
++ structure        `object` 追加表单字段结构
+	+ key值        `string` 对应表单字段名，用于接口提交
+	+ value值      `object` showname显示值，data-alt异常显示文案
 + list:            `array` 需要验证的表单元素列表, 以下参数均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
+	+ name         参考下面name结束
 	+ required     `boolean` 默认为空，设置为true才算启用必填校验
 	+ data-alt     `string` 表单验证失败的文案
 	+ data-valid   `string` 表单校验类型
@@ -75,6 +79,7 @@ var form = new seeditForm({
 + `backupfield1` 备用字段1
 + `backupfield2` 备用字段2
 + `backupfield3` 备用字段3
++ 外部structrue追加
 
 ## 实例参数
 + params `object` 所有参数集合

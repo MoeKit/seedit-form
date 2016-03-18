@@ -23,6 +23,11 @@ form = new seeditForm({
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
+	structure: {
+		name: 'gid',
+		showname: '我的gid',
+		'data-alt': '不能为空'
+	},
 	list: [
 		{
 			name: "realname",
@@ -72,6 +77,10 @@ form = new seeditForm({
 		},
 		{
 			name: "backupfield3",
+			required: true
+		},
+		{
+			name: "gid",
 			required: true
 		}
 	],
@@ -104,6 +113,12 @@ form = new seeditForm({
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
+	structure: {
+		gid: {
+			showname: '我的gid',
+			'data-alt': '不能为空'
+		}
+	},
 	list: [
 		{
 			name: "realname",
@@ -153,6 +168,10 @@ form = new seeditForm({
 		},
 		{
 			name: "backupfield3",
+			required: true
+		},
+		{
+			name: "gid",
 			required: true
 		}
 	],

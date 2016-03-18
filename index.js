@@ -54,6 +54,11 @@ seeditForm.prototype.format = function(options){
 	this.params.uid =        options.uid || '';
 	// 微信用户unionid
 	this.params.unionid =    options.unionid || '';
+	this.params.apiurl  =    options.apiurl || {
+		infoPost: Config.getSiteUrl('huodong') + '/restful/users/info.json',
+		infoGet:  Config.getSiteUrl('huodong') + '/restful/users/info.json'
+	};
+	// 微信用户unionid
 	this.params.multiple =   options.multiple || '信息提交中，请稍等';
 	// 新版接口多了类型和活动id（例如：type=miyuezhuanwechat; activityid=567b68358cf43288478b4568）
 	this.params.type =       options.type || '';
@@ -147,6 +152,11 @@ seeditForm.prototype.format = function(options){
 			'data-alt': '备用字段3不能为空哦~'
 		}
 	};
+	if( Object.prototype.toString.call(options.structure) === '[object Object]' ){
+		for(var i in options.structure){
+			this.params.data[i] = options.structure[i];
+		}
+	}
 	options = null;
 	return this;
 }
@@ -280,7 +290,7 @@ seeditForm.prototype.submit = function(){
 	_this.abeld = false;
 	$.ajax({
 		type: 'POST',
-		url: Config.getSiteUrl('huodong') + '/restful/users/info.json',
+		url: this.params.apiurl.infoPost,
 		data: json,
 		xhrFields: {
 			withCredentials: true
@@ -315,7 +325,7 @@ seeditForm.prototype.readApi = function(){
 		if( this.params.activityid ) json.activityid = this.params.activityid;
 		$.ajax({
 			type: 'GET',
-			url: Config.getSiteUrl('huodong') + '/restful/users/info.json',
+			url: this.params.apiurl.infoGet,
 			data: json,
 			xhrFields: {
 				withCredentials: true
