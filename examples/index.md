@@ -34,8 +34,7 @@ form = new seeditForm({
 		{
 			name: "realname",
 			required: true,
-			'data-alt': "姓名不能为空，外部传入"，
-			placeholder:'xxxx'
+			'data-alt': "姓名不能为空",
 		},
 		{
 			name: "mobile",
@@ -90,7 +89,7 @@ form = new seeditForm({
 		{
 			name: "realname",
 			required: true,
-			'data-alt': "姓名不能为空，外部传入"
+			'data-alt': "姓名不能为空",
 		},
 		{
 			name: "mobile",

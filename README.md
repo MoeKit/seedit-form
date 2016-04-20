@@ -58,33 +58,31 @@ var form = new seeditForm({
 + unionid:         `string` 微信unionid
 + type:            `string` 活动类型，通过活动统一接口获取
 + activityid:      `string` 活动id
++ activityAPI:	   `string` 活动提交信息接口API
 + $:               `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
 + uid:             `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
- 
-
-
-
-+ title:           `string` 顶部引导文案
-+ submit:          `string` 提交按钮文案
-+ close:           `string` 关闭按钮文案
-+ validator:       `object` 表单验证组件初始化配置
-
-
-
-+ list:            `array` 需要验证的活动信息表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
-	+ placeholer
++ subTips          `string` 提交地址页顶部提示语
++ addTips          `string` 添加地址页顶部提示语
++ addrEditTips     `string` 修改地址页顶部提示语
++ choiceTips       `string` 选择地址列表页顶部提示语
++ editTips         `string` 修改地址列表页顶部提示语
++ tips             `string` 修改地址页信息底部提示语
++ subBtn           `string` 提交保存按钮文案
++ editBtn          `string` 修改保存按钮文案
++ addBtn           `string` 添加保存按钮文案
++ closeBtn		   `string` 返回按钮文案
++ delBtn		   `string` 删除地址文案
++ delTips		   `string` 确认删除提示语
++ cancle		   `string` 取消按钮提示语
++ delBtnYes		   `string` 确定删除按钮文案
++ listAddBtn	   `string` 新建地址按钮文案
++ listEditBtn	   `string` 修改地址按钮文案
++ list/attr:       `array` 需要验证的表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性
+	+ placeholer   `string`  表单占位符，表单无内容时显示
 	+ required     `boolean` 默认为空，设置为true才算启用必填校验
 	+ data-alt     `string` 表单验证失败的文案
 	+ data-valid   `string` 表单校验类型，姓名相关请填realname
 	+ 更多请参考validator的表单标签属性
-+ list:            `array` 需要验证的地址信息表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性  
-	+ required     `boolean` 默认为空，设置为true才算启用必填校验
-	+ data-alt     `string` 表单验证失败的文案
-	+ data-valid   `string` 表单校验类型，姓名相关请填realname
-	+ 更多请参考validator的表单标签属性
-
-
-
 + onVerifyError:   `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
 + onVerifySuccess: `function` 表单验证通过回调,(默认自带提交资料到接口，一般不需要重写此方法)
 + formatValue:     `function` 提交资料的json数据格式化事件
@@ -94,13 +92,13 @@ var form = new seeditForm({
 + onSubmit:        `function` 提交按钮的回调事件
 
 ## 初始化参数的`list`下的`name`值介绍
-+ `realname`     姓名
-+ `mobile`       手机号码
-+ `provcity`     地区信息（省市）
-+ `addr`         详细地址
-+ `zipcode`      邮编
++ `realname`     真实姓名
 + `qq`           QQ
-+ `weixinhao`    微信号
++ `mobile`       手机号码
++ `provcity`     地区信息（省市区）
++ `addr`         详细街道
++ `zipcode`      邮编
++ `wechat`    微信号
 + `backupfield1` 备用字段1
 + `backupfield2` 备用字段2
 + `backupfield3` 备用字段3
@@ -109,9 +107,13 @@ var form = new seeditForm({
 + params `object` 所有参数集合
 	+ data `object` 内部表单元素内容
 + validator `instance` 表单组件的实例化对象[参数参考](https://moekit.com/package/validator)
-+ submit `function` 提交资料到接口
++ submit `function` 提交资料到活动接口
 + open `function` 打开表单
 + close `function` 关闭表单
 			
 ## 接口相关
-http://huodong.office.bzdev.net/restful/users/operate.doc
+http://common.office.bzdev.net/user/address_addr.doc
+
+http://common.office.bzdev.net/user/address_addradmin.doc
+
+http://huodong.office.bzdev.net/restful/activity/user.doc

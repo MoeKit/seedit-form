@@ -75,7 +75,7 @@ seeditForm.prototype.format = function(options){
 	// 返回上一页面按钮文案
 	this.params.closeBtn =     options.closeBtn || '返回';
 	// 返回列表页按钮文案
-	this.params.returnList =     options.returnList || '点击返回';
+	this.params.returnList =     options.closeBtn || '点击返回';
 	// 信息列表页下方删除文案
 	this.params.delBtn =      options.delBtn || '删除收件信息';
 	// 删除弹出文字提示语
@@ -100,6 +100,7 @@ seeditForm.prototype.format = function(options){
 	// 新版接口多了类型和活动id（例如：type=miyuezhuanwechat; activityid=567b68358cf43288478b4568）
 	this.params.type =       options.type || '';
 	this.params.activityid = options.activityid || '';
+	this.params.activityAPI = options.activityAPI || Config.getSiteUrl('huodong') + '/restful/activity/user.json'; 
 	this.btn = {};
 	this.btn.submit = options.onSubmit || function(){
 			if( !_this.params.type || !_this.params.activityid ){
@@ -401,7 +402,7 @@ seeditForm.prototype.initHtml = function(data,num){
 				html += item.replace('{{timestamp}}',  this.timestamp || '' )
 							.replace(/{{name}}/gi,     list[i]['name'] || '' )
 							.replace('{{showname}}',   !!list[i].showname ? list[i].showname : this.params.data[list[i].name].showname || '' )
-							.replace('{{placeholder}}',!!list[i].placeholder ? list[i].placeholder : this._getAttr('placeholder', list[i]) || '')
+							.replace('{{placeholder}}',!!list[i].placeholder ? 'placeholder='+list[i].placeholder : this._getAttr('placeholder', list[i]) || '')
 							.replace('{{value}}',      !!addr[addrname] ? addr[addrname] : '' )
 							.replace('{{required}}',   !!list[i].required ? 'required ' : '' )
 							.replace('{{data-string}}',provcityStr ||'')
@@ -577,7 +578,7 @@ seeditForm.prototype.activitySub = function(data){
 	var _this = this;
 	$.ajax({
 		type: 'POST',
-		url: Config.getSiteUrl('huodong') + '/restful/activity/user.json',
+		url: _this.params.activityAPI,
 		data: data,
 		xhrFields: {
 			withCredentials: true
