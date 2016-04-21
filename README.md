@@ -83,6 +83,9 @@ var form = new seeditForm({
 	+ data-alt     `string` 表单验证失败的文案
 	+ data-valid   `string` 表单校验类型，姓名相关请填realname
 	+ 更多请参考validator的表单标签属性
++ structure        `object` 追加表单字段结构
+	+ key值        `string` 对应表单字段名，用于接口提交
+	+ value值      `object` showname显示值，data-alt异常显示文案
 + onVerifyError:   `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
 + onVerifySuccess: `function` 表单验证通过回调,(默认自带提交资料到接口，一般不需要重写此方法)
 + formatValue:     `function` 提交资料的json数据格式化事件
@@ -98,10 +101,11 @@ var form = new seeditForm({
 + `provcity`     地区信息（省市区）
 + `addr`         详细街道
 + `zipcode`      邮编
-+ `wechat`    微信号
++ `wechat`       微信号
 + `backupfield1` 备用字段1
 + `backupfield2` 备用字段2
 + `backupfield3` 备用字段3
++ 外部structrue追加
 
 ## 实例参数
 + params `object` 所有参数集合
