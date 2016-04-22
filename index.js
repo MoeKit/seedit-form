@@ -466,11 +466,6 @@ seeditForm.prototype.defaultAddr = function(data,num){
 		var list = this.params.list;
 		var addr = {};
 		var html = '';
-		if(!!num){
-			var active = ''
-		} else {
-			var active = ' active'
-		}
 		this.params.aid = !!data ? data.aid : 0;
 		for(var i=0; i<list.length; i++){
 			// 存在字段的name值，才加入初始化的html
@@ -478,7 +473,6 @@ seeditForm.prototype.defaultAddr = function(data,num){
 				var addrname = list[i].name;
 				if( addrname === 'provcity' ){
 					this.provcity = true;
-					var provcityStr = c;
 				}
 				html += item.replace('{{timestamp}}',  this.timestamp || '' )
 							.replace(/{{name}}/gi,     list[i]['name'] || '' )
@@ -486,7 +480,7 @@ seeditForm.prototype.defaultAddr = function(data,num){
 							.replace('{{placeholder}}',!!addr[addrname] ? '' : this._getAttr('placeholder', list[i]) || '')
 							.replace('{{value}}',      !!addr[addrname] ? addr[addrname] : '' )
 							.replace('{{required}}',   !!list[i].required ? 'required ' : '' )
-							.replace('{{data-string}}',provcityStr ||'')
+							.replace('{{data-string}}','')
 							.replace('{{data-valid}}', this._getAttr('data-valid', list[i]) || '' )
 							.replace('{{pattern}}',    this._getAttr('pattern', list[i]) || '' )
 							.replace('{{min}}',        this._getAttr('min', list[i]) || '' )
@@ -506,7 +500,6 @@ seeditForm.prototype.defaultAddr = function(data,num){
 					.replace('{{ditrict}}',    data['ditrict']+' ' || '')
 					.replace('{{addr}}',       data['addr'] || '')
 					.replace('{{infoid}}',       data['aid'] || '')
-				 	.replace('{{active}}', active || '')
 				 	.replace('{{id}}',     	this.params.id || '' )
 				 	.replace('{{subTips}}', 	    this.params.subTips || '' )
 					 .replace('{{tips}}',     this.params.tips || '' )
