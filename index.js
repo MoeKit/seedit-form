@@ -58,6 +58,8 @@ seeditForm.prototype.format = function(options){
 	this.params.list =       options.list || [];
 	// 实际需要的地址信息
 	this.params.addr =       options.addr || [];
+	// 外部传入的html代码，显示在最外层页面
+	this.params.html =       options.html || '';
 	// 提交地址顶部提示语
 	this.params.subTips =  options.subTips || '请确认您的收件信息';
 	// 添加地址顶部提示语
@@ -503,6 +505,7 @@ seeditForm.prototype.defaultAddr = function(data,num){
 				 	.replace('{{id}}',     	this.params.id || '' )
 				 	.replace('{{subTips}}', 	    this.params.subTips || '' )
 					 .replace('{{tips}}',     this.params.tips || '' )
+					 .replace('{{html}}',     this.params.html || '' )
 					 .replace('{{subBtn}}',      this.params.subBtn || '' )
 					 .replace('{{closeBtn}}',    this.params.closeBtn|| '' );
 		if(!!num){	

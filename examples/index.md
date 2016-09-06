@@ -20,6 +20,7 @@ form = new seeditForm({
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
+	html:'<p>hello</p>',
 	structure: {
 		name: 'gid',
 		showname: '我的gid',
@@ -84,6 +85,7 @@ form = new seeditForm({
 	unionid: 'oMtuSuPR800N-AXWdjMmXmlLHY0Y',
 	type: 'miyuezhuanwechat',
 	activityid: '567b68358cf43288478b4568',
+	html:'<p>hello</p>',
 	structure: {
 		gid: {
 			showname: '我的gid',

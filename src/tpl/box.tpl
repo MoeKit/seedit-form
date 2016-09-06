@@ -11,6 +11,7 @@
 	</ul>
 	<ul class="personal-info-list">{{body}}</ul>
 	<div class="personal-info-tips2">{{tips}}</div>
+	<div class="index-html">{{html}}</div>
 	<button type="button" class="personal-info-btn personal-btn-sub">{{subBtn}}</button>
 	<button type="button" class="personal-info-btn personal-btn-close">{{closeBtn}}</button>
 </div>

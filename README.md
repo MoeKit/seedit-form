@@ -61,6 +61,7 @@ var form = new seeditForm({
 + activityAPI:	   `string` 活动提交信息接口API
 + $:               `string` jquery，可选，没有值时默认使用全局$, 也可以外部传入jquery
 + uid:             `string|number` 论坛用户uid，默认自动读取用户信息，一般不需要填写
++ html             `html`   显示在最外层页面
 + subTips          `string` 提交地址页顶部提示语
 + addTips          `string` 添加地址页顶部提示语
 + addrEditTips     `string` 修改地址页顶部提示语
