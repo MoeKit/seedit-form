@@ -63,7 +63,7 @@ span{
 }
 .personal-info-list{
 	background: #fff;
-	border-top:1px solid #D4D4D4;
+	margin-top: 0.625em;
 }
 .personal-info-list li {
 	padding: 0 5%;
@@ -71,6 +71,9 @@ span{
 	line-height: 2.8125em;
 	border-bottom:1px solid #D4D4D4;
 	font-size: 1em;
+}
+.personal-info-list li:first-child{
+	border-top:1px solid #D4D4D4;
 }
 .personal-info-list li span {
 	float: left;
@@ -165,7 +168,6 @@ span{
 }
 .user-info{
 	background: #fff;
-	margin-bottom: 0.625em;
 	padding: 0.2em 5%;
 	font-size: 1em;
 	line-height: 2em;

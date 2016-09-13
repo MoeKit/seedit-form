@@ -121,6 +121,10 @@ seeditForm.prototype.format = function(options){
 	this.btn.close = options.onClose || function(){
 		_this.close();
 	};
+	//外部修改提交数据
+	this.editJson = options.editJson || function(){
+
+	}
 	// 程序异常回调
 	this.onEventError =      options.onEventError || function(){
 		
@@ -556,6 +560,8 @@ seeditForm.prototype.submit = function(num){
 	 		} else json[ this.params.list[i].name ] = document.querySelector('#' + this.params.id + ' input[name="' + this.params.list[i].name + '"]').value;
 		 }
 	}
+	// 外部修改json
+	this.editJson(json);
 	// 格式化数据
 	json = this.params.formatValue(json);
 	if( !!this.params.unionid )    json.unionid = this.params.unionid;

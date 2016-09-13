@@ -67,6 +67,9 @@ form = new seeditForm({
 	},
 	onSuccess: function(data){
 
+	},
+	editJson:function(json){
+		json.add = "222";
 	}
 });
 document.querySelector('#btn').addEventListener('click', function(){
@@ -133,6 +136,9 @@ form = new seeditForm({
 	},
 	formatValue: function(json){
 		console.log(json);return json;
+	},
+	editJson:function(json){
+		json.add = "222";
 	}
 });
 document.querySelector('#btn').addEventListener('click', function(){

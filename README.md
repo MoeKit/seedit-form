@@ -94,6 +94,7 @@ var form = new seeditForm({
 + onSuccess:       `function` 提交资料失败回调
 + onClose:         `function` 返回按钮的回调事件
 + onSubmit:        `function` 提交按钮的回调事件
++ editJson:        `function` 外部修改提交的json
 
 ## 初始化参数的`list`下的`name`值介绍
 + `realname`     真实姓名
