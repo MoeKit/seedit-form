@@ -58,8 +58,6 @@ seeditForm.prototype.format = function(options){
 	this.params.list =       options.list || [];
 	// 实际需要的地址信息
 	this.params.addr =       options.addr || [];
-	// 外部传入的html代码，显示在最外层页面
-	this.params.html =       options.html || '';
 	// 提交地址顶部提示语
 	this.params.subTips =  options.subTips || '请确认您的收件信息';
 	// 添加地址顶部提示语
@@ -150,6 +148,10 @@ seeditForm.prototype.format = function(options){
 		alert("收件信息提交成功");
 		_this.close();
 	}
+	// 外部传入的html代码，显示在最外层页面
+	this.indexHtml = options.indexHtml || function(){
+		return ''
+	};
 	/*
 	 * 基本构造数据
 	 * @params showname 表单左侧显示文案
@@ -509,7 +511,7 @@ seeditForm.prototype.defaultAddr = function(data,num){
 				 	.replace('{{id}}',     	this.params.id || '' )
 				 	.replace('{{subTips}}', 	    this.params.subTips || '' )
 					 .replace('{{tips}}',     this.params.tips || '' )
-					 .replace('{{html}}',     this.params.html || '' )
+					 .replace('{{html}}',     this.indexHtml())
 					 .replace('{{subBtn}}',      this.params.subBtn || '' )
 					 .replace('{{closeBtn}}',    this.params.closeBtn|| '' );
 		if(!!num){	
@@ -530,7 +532,7 @@ seeditForm.prototype.defaultAddr = function(data,num){
 	return this;
 }
 // 提交地址信息 
-// 参数为1提交到活动用户
+// 不带参数提交到活动用户
 // 参数为2提交到地址管理
 seeditForm.prototype.submit = function(num){
 	var _this = this;
@@ -561,7 +563,7 @@ seeditForm.prototype.submit = function(num){
 		 }
 	}
 	// 外部修改json
-	this.editJson(json);
+	this.editJson(json,num);
 	// 格式化数据
 	json = this.params.formatValue(json);
 	if( !!this.params.unionid )    json.unionid = this.params.unionid;
