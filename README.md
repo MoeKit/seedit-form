@@ -90,8 +90,8 @@ var form = new seeditForm({
 + onVerifyError:   `function` 表单验证失败回调，带三个参数`name`, `dom`, `alt`
 + onVerifySuccess: `function` 表单验证通过回调,(默认自带提交资料到接口，一般不需要重写此方法)
 + formatValue:     `function` 提交资料的json数据格式化事件
-+ onError:         `function` 提交资料成功回调
-+ onSuccess:       `function` 提交资料失败回调
++ onSuccess:         `function` 提交资料成功回调
++ onError:       `function` 提交资料失败回调
 + onClose:         `function` 返回按钮的回调事件
 + onSubmit:        `function` 提交按钮的回调事件
 + editJson:        `function` 外部修改提交的json
