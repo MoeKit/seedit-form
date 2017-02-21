@@ -81,3 +81,6 @@ var form = new seeditForm({
 			
 ## 接口相关
 http://huodong.office.bzdev.net/restful/users/operate.doc
+
+## 版本相关
+0.0.2版本添加兼容https

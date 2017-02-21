@@ -6,6 +6,7 @@ var item = require('./src/tpl/item.tpl');
 var Validator = require('validator');
 var Config = require('seedit-config');
 var District = require('seedit-district');
+var isDebug = /debug/.test(location.href);
 
 var seeditForm = function(options){
 	this.init(options);
@@ -208,7 +209,7 @@ seeditForm.prototype.event = function(){
 // 初始化省市选择器
 seeditForm.prototype.initDistrict = function(){
 	if( !!this.provcity ){
-		console.log( new District(this.params.district) );
+		!!isDebug && console.log( new District(this.params.district) );
 	}
 }
 // 提交信息事件
@@ -280,10 +281,10 @@ seeditForm.prototype.readApi = function(){
 				withCredentials: true
 			},
 			success: function(data){
-				console.log( _this.params );
+				 !!isDebug && console.log( _this.params );
 				if( data.error_code == 0 ){
 					for(var i in _this.params.data){
-						console.log( document.querySelector('#JS_form_' + i + '_' + _this.timestamp) );
+						!!isDebug && console.log( document.querySelector('#JS_form_' + i + '_' + _this.timestamp) );
 						if( i == 'provcity' ){
 							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
 						} else if( document.querySelector('#JS_form_' + i + '_' + _this.timestamp ) ){
