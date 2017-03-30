@@ -211,7 +211,7 @@ seeditForm.prototype.event = function(){
 // 初始化省市选择器
 seeditForm.prototype.initDistrict = function(){
 	if( !!this.provcity ){
-		!!isDebug && console.log( new District(this.params.district) );
+		console.log( new District(this.params.district) );
 	}
 }
 // 提交信息事件
@@ -284,11 +284,11 @@ seeditForm.prototype.readApi = function(){
 			},
 			success: function(data){
 				 !!isDebug && console.log( _this.params );
-				if( data.error_code == 0 ){
+				if( data.error_code == 0 && !!data.data.uid){
 					for(var i in _this.params.data){
 						!!isDebug && console.log( document.querySelector('#JS_form_' + i + '_' + _this.timestamp) );
 						if( i == 'provcity' ){
-							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data['prov'] + data.data['city'];
+							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = !!data.data['prov'] && data.data['city'] ? data.data['prov'] + data.data['city'] : '';
 						} else if( document.querySelector('#JS_form_' + i + '_' + _this.timestamp ) ){
 							document.querySelector('#JS_form_' + i + '_' + _this.timestamp).value = data.data[i];
 						}
