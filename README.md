@@ -77,7 +77,7 @@ var form = new seeditForm({
 + delBtnYes		   `string` 确定删除按钮文案
 + listAddBtn	   `string` 新建地址按钮文案
 + listEditBtn	   `string` 修改地址按钮文案
-+ list/attr:       `array` 需要验证的表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性
++ list/addr:       `array` 需要验证的表单元素列表, 以下参数除placeholder外均依赖[validator](https://moekit.com/package/validator)组件的表单标签属性(list额外信息, addr实际需要的地址信息)
 	+ placeholer   `string`  表单占位符，表单无内容时显示
 	+ required     `boolean` 默认为空，设置为true才算启用必填校验
 	+ data-alt     `string` 表单验证失败的文案
@@ -93,7 +93,9 @@ var form = new seeditForm({
 + onError:       `function` 提交资料失败回调
 + onClose:         `function` 返回按钮的回调事件
 + onSubmit:        `function` 提交按钮的回调事件
-+ editJson:        `function` 外部修改提交的json，参数num控制在哪个环节修改数据
++ editJson:        `function` 外部修改提交的json，提供两个参数：data, num
+	+ data: 提交接口的数据
+	+ num: 2为地址库环节提交数据，undefine为活动接口环节提交数据
 + indexHtml		   `function` 外部插入html代码，显示在最外层页面
 
 ## 初始化参数的`list`下的`name`值介绍
